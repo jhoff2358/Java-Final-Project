@@ -22,10 +22,10 @@ public class Frame{
         JF.add(pan1);
         pan2.add(solve);
         JF.add(pan2, BorderLayout.SOUTH);
-        for(JTextField j: jt){
-            j = new JTextField();
-            j.setColumns(5);
-            pan1.add(j);
+        for(int i = 0; i < jt.length; i++){
+            jt[i] = new JTextField("0");
+            jt[i].setColumns(5);
+            pan1.add(jt[i]);
         }
         solve.addActionListener(new ActionListener(){
            public void actionPerformed(ActionEvent e){
@@ -35,9 +35,9 @@ public class Frame{
         });
     }
     public void printThing(JTextField[] jt){
-        for(int i = 1; i <= 9; i++){
-            for(int j = 1; j <= 9; j++){
-                System.out.print(jt[j * i - 1].getText() + "  ");
+        for(int i = 0; i < 9; i++){
+            for(int j = 0; j < 9; j++){
+                System.out.print(jt[9 * i + j].getText() + "  ");
             }
             System.out.println();
         }
