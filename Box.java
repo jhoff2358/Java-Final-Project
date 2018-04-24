@@ -1,7 +1,7 @@
 import javax.swing.*;
 
 public class Box extends JTextField{
-    private int index, width = 9, height = 9;
+    public int index, width = 9, height = 9;
     public int cellNum, row, col, valueOfText;
     public Box(JTextField t, int index){
         this.index = index;

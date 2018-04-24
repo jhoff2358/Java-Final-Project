@@ -7,6 +7,7 @@ public class Frame{
     private JPanel pan1, pan2;
     JTextField jt[];
     private JButton solve;
+    
     public Frame(){
         JF = new JFrame("Sudoku Solver");
         JF.setVisible(true);
@@ -30,13 +31,14 @@ public class Frame{
         solve.addActionListener(new ActionListener(){
            public void actionPerformed(ActionEvent e){
                printThing(jt);
+               Main.build(jt);
            }
             
         });
     }
     public void printThing(JTextField[] jt){
         for(int i = 0; i < 9; i++){
-            for(int j = 1; j <= 9; j++){
+            for(int j = 0; j < 9; j++){
                 System.out.print(jt[9 * i + j].getText() + "  ");
             }
             System.out.println();

@@ -1,3 +1,11 @@
 #BlueJ class context
 comment0.target=Solver
-numComments=1
+comment1.params=
+comment1.target=void\ solve()
+comment2.params=box
+comment2.target=int[]\ checkRow(Box)
+comment3.params=box
+comment3.target=int[]\ checkCol(Box)
+comment4.params=box
+comment4.target=int[]\ checkCell(Box)
+numComments=5

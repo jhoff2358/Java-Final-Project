@@ -24,15 +24,14 @@ public class Frame{
         pan2.add(solve);
         JF.add(pan2, BorderLayout.SOUTH);
         for(int i = 0; i < jt.length; i++){
-            jt[i] = new JTextField("0");
+            jt[i] = new JTextField("");
             jt[i].setColumns(5);
             pan1.add(jt[i]);
         }
         solve.addActionListener(new ActionListener(){
            public void actionPerformed(ActionEvent e){
                printThing(jt);
-               Main m = new Main();
-               m.build(jt);
+               Main.build(jt);
            }
             
         });
