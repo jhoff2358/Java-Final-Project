@@ -10,7 +10,7 @@ public class Main{
         Box[] b = new Box[81];
         for(int i = 0; i < 81; i++){
             b[i] = new Box(jt[i], i);
-            System.out.println(b[i].cellNum + "   " + b[i].valueOfText);
+            System.out.println(b[i].cellNum + "     " + b[i].valueOfText);
         }
     }
 }
