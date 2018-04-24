@@ -7,6 +7,7 @@ public class Frame{
     private JPanel pan1, pan2;
     JTextField jt[];
     private JButton solve;
+    
     public Frame(){
         JF = new JFrame("Sudoku Solver");
         JF.setVisible(true);
@@ -30,6 +31,8 @@ public class Frame{
         solve.addActionListener(new ActionListener(){
            public void actionPerformed(ActionEvent e){
                printThing(jt);
+               Main m = new Main();
+               m.build(jt);
            }
             
         });

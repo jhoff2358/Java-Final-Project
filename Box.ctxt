@@ -1,5 +1,5 @@
 #BlueJ class context
 comment0.target=Box
-comment1.params=index
-comment1.target=Box(int)
+comment1.params=t\ index
+comment1.target=Box(javax.swing.JTextField,\ int)
 numComments=2
