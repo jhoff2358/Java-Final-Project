@@ -32,6 +32,7 @@ public class Frame{
            public void actionPerformed(ActionEvent e){
                printThing(jt);
                Main.build(jt);
+               Solver.solve(Main.boxes);
            }
             
         });

@@ -1,11 +1,15 @@
 #BlueJ class context
 comment0.target=Solver
-comment1.params=
-comment1.target=void\ solve()
+comment1.params=boxes
+comment1.target=void\ solve(Box[])
 comment2.params=box
 comment2.target=int[]\ checkRow(Box)
 comment3.params=box
 comment3.target=int[]\ checkCol(Box)
 comment4.params=box
 comment4.target=int[]\ checkCell(Box)
-numComments=5
+comment5.params=boxes
+comment5.target=boolean\ isSolved(Box[])
+comment6.params=row\ col\ cell
+comment6.target=void\ isOnlyNum(int[],\ int[],\ int[])
+numComments=7
