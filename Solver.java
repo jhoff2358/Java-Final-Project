@@ -13,6 +13,7 @@ public class Solver{
             }
         } while(!isSolved(boxes));
         System.out.println("Completed");
+        Print(boxes);
     }
     public static int[] checkRow(Box box) {
         int[] output = new int[] {1, 2, 3, 4, 5, 6, 7, 8, 9};
@@ -32,7 +33,7 @@ public class Solver{
         }
         return output;
     }
-    public static int[] checkCell(Box box, Box[] boxes) { //TOMORRRROOOWOW
+    public static int[] checkCell(Box box, Box[] boxes) {
         int[] output = new int[] {1, 2, 3, 4, 5, 6, 7, 8, 9};
         int cellN = box.cellNum;
         for (int i = 0; i < boxes.length; i++) {
@@ -45,14 +46,24 @@ public class Solver{
         return output;
     }
     public static boolean isSolved(Box[] boxes){
-        boolean out = true;
-        for(int i = 0; i < boxes.length; i++){
-            if(boxes[i].rowPos.length != 0 && boxes[i].colPos.length != 0 && boxes[i].cellPos.length != 0){
-                out = false;
-                break;
+        int cellTot = 0, rowTot = 0, colTot = 0;
+        for(int j = 0; j < 9; j++){
+            for(int i = 0; i < boxes.length; i++){
+                if(boxes[i].cellNum == j){
+                    cellTot += boxes[i].valueOfText;
+                }
+                if(boxes[i].row == j){
+                    rowTot += boxes[i].valueOfText;
+                }
+                if(boxes[i].col == j){
+                    rowTot += boxes[i].valueOfText;
+                }
             }
+            if(cellTot != 45) return false;
+            if(rowTot != 45) return false;
+            if(colTot != 45) return false;
         }
-        return out;
+        return true;
     }
     public static void isOnlyNum(Box box, int[] row, int[] col, int[] cell){
         boolean firstFound = false, secondFound = false;
@@ -68,6 +79,14 @@ public class Solver{
         }
         if(firstFound && !secondFound && index != -1){
             box.valueOfText = row[index];
+        }
+    }
+    public static void Print(Box[] boxes){
+        for(int i = 0; i < boxes[0].rowPos.length; i++){
+            for(int j = 0; j < boxes[0].rowPos.length; j++){
+                System.out.print(boxes[9 * i + j].valueOfText + " ");
+            }
+            System.out.println();
         }
     }
 }

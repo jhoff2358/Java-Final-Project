@@ -7,10 +7,13 @@ public class Solver{
                 boxes[i].rowPos = checkRow(boxes[i]);
                 boxes[i].colPos = checkCol(boxes[i]);
                 boxes[i].cellPos = checkCell(boxes[i], boxes);
-                
-                isOnlyNum(boxes[i], boxes[i].rowPos, boxes[i].colPos, boxes[i].cellPos);
+                if(boxes[i].valueOfText != 0){
+                    isOnlyNum(boxes[i], boxes[i].rowPos, boxes[i].colPos, boxes[i].cellPos);
+                }
             }
         } while(!isSolved(boxes));
+        System.out.println("Completed");
+        Print(boxes);
     }
     public static int[] checkRow(Box box) {
         int[] output = new int[] {1, 2, 3, 4, 5, 6, 7, 8, 9};
@@ -43,12 +46,9 @@ public class Solver{
         return output;
     }
     public static boolean isSolved(Box[] boxes){
-        boolean out = true;
+        boolean out = false;
         for(int i = 0; i < boxes.length; i++){
-            if(boxes[i].rowPos.length != 0 && boxes[i].colPos.length != 0 && boxes[i].cellPos.length != 0){
-                out = false;
-                break;
-            }
+            
         }
         return out;
     }
@@ -66,6 +66,14 @@ public class Solver{
         }
         if(firstFound && !secondFound && index != -1){
             box.valueOfText = row[index];
+        }
+    }
+    public static void Print(Box[] boxes){
+        for(int i = 0; i < boxes[0].rowPos.length; i++){
+            for(int j = 0; j < boxes[0].rowPos.length; j++){
+                System.out.print(boxes[9 * i + j].valueOfText + " ");
+            }
+            System.out.println();
         }
     }
 }
