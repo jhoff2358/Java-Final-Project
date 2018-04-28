@@ -3,7 +3,7 @@ import javax.swing.*;
 public class Box extends JTextField{
     public int index, width = 9, height = 9;
     public int cellNum, row, col, valueOfText;
-    public int[] rowPos, colPos, cellPos;
+    public int[] rowPos, colPos, cellPos, intersect;
     public Box(JTextField t, int index){
         this.index = index;
         row = (int)(index / width);

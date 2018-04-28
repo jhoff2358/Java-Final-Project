@@ -5,14 +5,16 @@ public class Solver{
         do{
             for(int i = 0; i < boxes.length; i++){
                 boxes[i].rowPos = checkRow(boxes[i]);
-                boxes[i].colPos = checkCol(boxes[i]);
+                boxes[i].colPos = checkCol(boxes[i], boxes);
                 boxes[i].cellPos = checkCell(boxes[i], boxes);
-                if(boxes[i].valueOfText != 0){
-                    isOnlyNum(boxes[i], boxes[i].rowPos, boxes[i].colPos, boxes[i].cellPos);
+                if(boxes[i].valueOfText == 0){
+                    boxes[i].intersect = intersection(boxes[i], boxes[i].rowPos, boxes[i].colPos, boxes[i].cellPos);
                 }
             }
+            complete(boxes);
         } while(!isSolved(boxes));
-        System.out.println("Completed");
+        System.out.println();
+        System.out.println("Completed!!!");
         Print(boxes);
     }
     public static int[] checkRow(Box box) {
@@ -24,11 +26,13 @@ public class Solver{
         }
         return output;
     }
-    public static int[] checkCol(Box box) {
+    public static int[] checkCol(Box box, Box[] boxes) {
         int[] output = new int[] {1, 2, 3, 4, 5, 6, 7, 8, 9};
-        for (int i = box.col; i < 80 - (9 - box.col); i+=9) {
-            if (Main.boxes[i].valueOfText != 0) {
-                output[Main.boxes[i].valueOfText - 1] = 0;
+        for (int i = 0; i < boxes.length; i++) {
+            if(boxes[i].col == box.col){
+                if (Main.boxes[i].valueOfText != 0) {
+                    output[Main.boxes[i].valueOfText - 1] = 0;
+                }
             }
         }
         return output;
@@ -56,32 +60,43 @@ public class Solver{
                     rowTot += boxes[i].valueOfText;
                 }
                 if(boxes[i].col == j){
-                    rowTot += boxes[i].valueOfText;
+                    colTot += boxes[i].valueOfText;
                 }
             }
             if(cellTot != 45) return false;
             if(rowTot != 45) return false;
             if(colTot != 45) return false;
+            cellTot = 0;
+            rowTot = 0; 
+            colTot = 0;
         }
         return true;
     }
-    public static void isOnlyNum(Box box, int[] row, int[] col, int[] cell){
-        boolean firstFound = false, secondFound = false;
-        int index = -1;
+    public static int[] intersection(Box box, int[] row, int[] col, int[] cell){
+        int[] intersect = new int[] {0, 0, 0, 0, 0, 0, 0, 0, 0};
         for(int i = 0; i < row.length; i++){
-            if(row[i] == col[i] && col[i] == cell[i] && !firstFound){
-                firstFound = true;
-                index = i;
-            } else if(row[i] == col[i] && col[i] == cell[i] && !secondFound){
-                secondFound = true;
-                break;
+            if(row[i] == col[i] && col[i] == cell[i] && box.valueOfText == 0){
+                intersect[i] = col[i];
             }
         }
-        if(firstFound && !secondFound && index != -1){
-            box.valueOfText = row[index];
+        return intersect;
+    }
+    public static void complete(Box[] boxes){
+        int count = 0, j, num = -1;
+        for(int i = 0; i < boxes.length; i++){
+            if(boxes[i].intersect == null) continue;
+            for(j = 0; j < boxes[i].intersect.length; j++){
+                if(boxes[i].intersect[j] != 0){
+                    count++;
+                    num = j;
+                }
+            }
+            if(count == 1) boxes[i].valueOfText = boxes[i].intersect[num];
+            count = 0;
         }
     }
     public static void Print(Box[] boxes){
+        System.out.println();
         for(int i = 0; i < boxes[0].rowPos.length; i++){
             for(int j = 0; j < boxes[0].rowPos.length; j++){
                 System.out.print(boxes[9 * i + j].valueOfText + " ");

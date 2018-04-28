@@ -12,7 +12,6 @@ public class Main{
         boxes = new Box[81];
         for(int i = 0; i < 81; i++){
             boxes[i] = new Box(jt[i], i);
-            System.out.println(boxes[i].cellNum + "     " + boxes[i].valueOfText);
         }
     }
 

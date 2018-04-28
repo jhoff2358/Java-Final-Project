@@ -40,7 +40,7 @@ public class Frame{
     public void printThing(JTextField[] jt){
         for(int i = 0; i < 9; i++){
             for(int j = 0; j < 9; j++){
-                System.out.print(jt[9 * i + j].getText() + "  ");
+                System.out.print(jt[9 * i + j].getText() + " ");
             }
             System.out.println();
         }
