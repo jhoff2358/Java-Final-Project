@@ -89,10 +89,10 @@ public class Solver{
         for(int i = 0; i < boxes.length; i++){
             for(int j = 0; j < boxes[0].length; j++){
                 if(boxes[i][j].intersect == null) continue;
-                for(j = 0; j < boxes[i][j].intersect.length; j++){
-                    if(boxes[i][j].intersect[j] != 0){
+                for(int k = 0; k < boxes[i][j].intersect.length; k++){
+                    if(boxes[i][j].intersect[k] != 0){
                         count++;
-                        num = j;
+                        num = k;
                     }
                 }
                 if(count == 1) boxes[i][j].valueOfText = boxes[i][j].intersect[num];
