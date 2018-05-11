@@ -2,6 +2,6 @@
 comment0.target=Main
 comment1.params=args
 comment1.target=void\ main(java.lang.String[])
-comment2.params=jt
-comment2.target=void\ build(javax.swing.JTextField[])
+comment2.params=jt\ rows\ cols
+comment2.target=void\ build(javax.swing.JTextField[][],\ int,\ int)
 numComments=3
