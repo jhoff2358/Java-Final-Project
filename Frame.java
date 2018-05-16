@@ -4,8 +4,8 @@ import java.awt.event.*;
 
 public class Frame{
     private JFrame JF;
-    private JPanel pan1, pan2;
-    JTextField jt[][];
+    private static JPanel pan1, pan2;
+    static JTextField jt[][];
     private JButton solve;
     public int rows, cols;
     public Frame(){
@@ -17,8 +17,8 @@ public class Frame{
         JF.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         rows = 9; 
         cols = 9;
-        pan1 = new JPanel();
-        pan2 = new JPanel();
+        pan1 = new JPanel(); // text fields
+        pan2 = new JPanel(); // solve button
         pan1.setLayout(new GridLayout(9, 9, 10, 10));
         jt = new JTextField[rows][cols];
         solve = new JButton("Solve!");
@@ -52,5 +52,16 @@ public class Frame{
             }
             System.out.println();
         }
+    }
+    
+    public static void update(Box[][] boxes) {
+        for(int i = 0; i < 9; i++){
+            for(int j = 0; j < 9; j++){
+                jt[i][j].setText(boxes[i][j].valueOfText + "");
+                jt[i][j].updateUI();
+            }
+            
+        }
+        pan1.updateUI();
     }
 }
