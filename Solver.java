@@ -11,8 +11,9 @@ public class Solver{
                     if(boxes[i][j].valueOfText == 0){
                         boxes[i][j].intersect = intersection(boxes[i][j], boxes[i][j].rowPos, boxes[i][j].colPos, boxes[i][j].cellPos);
                     }
+                }
             }
-        }
+            Print(boxes, rows, cols);
             complete(boxes);
         } while(!isSolved(boxes));
         System.out.println();
@@ -24,7 +25,7 @@ public class Solver{
         for (int i = 0; i < 9; i++) {
             if (Main.boxes[box.row][i].valueOfText != 0) {
                 output[Main.boxes[box.row][i].valueOfText - 1] = 0;
-            }
+            } 
         }
         return output;
     }

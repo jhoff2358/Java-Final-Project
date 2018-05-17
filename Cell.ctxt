@@ -1,7 +1,0 @@
-#BlueJ class context
-comment0.target=Cell
-comment1.params=boxes\ index
-comment1.target=Cell(Box[],\ int)
-comment2.params=cellBoxes
-comment2.target=void\ rowIntersections(Box[])
-numComments=3

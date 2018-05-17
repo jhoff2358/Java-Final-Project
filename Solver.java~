@@ -13,6 +13,7 @@ public class Solver{
                     }
             }
         }
+        
             complete(boxes);
         } while(!isSolved(boxes));
         System.out.println();
@@ -24,7 +25,7 @@ public class Solver{
         for (int i = 0; i < 9; i++) {
             if (Main.boxes[box.row][i].valueOfText != 0) {
                 output[Main.boxes[box.row][i].valueOfText - 1] = 0;
-            }
+            } 
         }
         return output;
     }
@@ -89,7 +90,7 @@ public class Solver{
         for(int i = 0; i < boxes.length; i++){
             for(int j = 0; j < boxes[0].length; j++){
                 if(boxes[i][j].intersect == null) continue;
-                for(k = 0; k < boxes[i][j].intersect.length; k++){
+                for(int k = 0; k < boxes[i][j].intersect.length; k++){
                     if(boxes[i][j].intersect[k] != 0){
                         count++;
                         num = k;
