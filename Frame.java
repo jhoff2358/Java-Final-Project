@@ -27,31 +27,30 @@ public class Frame{
         JF.add(pan2, BorderLayout.SOUTH);
         for(int i = 0; i < rows; i++){ 
             for(int j = 0; j < cols; j++){
-                jt[i][j] = new JTextField("");
+                jt[i][j] = new JTextField(Integer.toString(Main.antiop[i][j]));
+                //jt[i][j] = new JTextField("");
+                jt[i][j].setFont(new Font("Arial", Font.PLAIN, 36));
                 jt[i][j].setColumns(5);
                 pan1.add(jt[i][j]);
             }
         }
         solve.addActionListener(new ActionListener(){
            public void actionPerformed(ActionEvent e){
-               printThing(jt);
+               //printThing(boxes);
                Main.build(jt, rows, cols);
                Solver.solve(Main.boxes, rows, cols);
            }
             
         });
     }
-    public void printThing(JTextField[][] jt){
+    public void printThing(Box[][] boxes){
         for(int i = 0; i < rows; i++){
             for(int j = 0; j < cols; j++){
-                if(jt[i][j].getText() != ""){
-                    System.out.print(jt[i][j].getText() + " ");
-                } else {
-                    System.out.print("0 ");
-                }
+                System.out.print(boxes[i][j].valueOfText + " ");
             }
             System.out.println();
         }
+        System.out.println();
     }
     
     public static void update(Box[][] boxes) {

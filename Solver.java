@@ -6,18 +6,24 @@ public class Solver{
         
         int currX = 0;
         int currY = 0;
-        while (currX <= 8) {
-            
-            System.out.println("X: " + currX + "Y: " + currY);
+        int count = 0;
+        long time = System.currentTimeMillis();
+        
+        while (currY <= 8) {
             Box currBox = boxes[currX][currY];
             while (!boxes[currX][currY].changeable) {
+                currX++;
                 if (currX > 8) {
                     currY++;
                     currX = 0;
                 }
-                currX++;
+                if (currY > 8) break;
+                currBox = boxes[currX][currY];
             }
-            if (currBox.valueOfText == 0) currBox.valueOfText = 1;
+            if (currBox.valueOfText == 0) {
+                currBox.valueOfText = 1;
+                continue;
+            }
             if (checkRow(currBox) && checkCol(currBox) && checkCell(currBox)) {
                 currX++;
                 if (currX > 8) {
@@ -26,25 +32,38 @@ public class Solver{
                 }
             } else {
                 currBox.valueOfText++;
-                if (currBox.valueOfText == 10) {
+                while (currBox.valueOfText > 9) {
                     currBox.valueOfText = 0;
-                    while (!boxes[currX][currY].changeable) {
+                    currX--;
+                    if (currX < 0) {
+                            currY--;
+                            currX = 8;
+                    }
+                    currBox = boxes[currX][currY];
+                    while (!currBox.changeable) {
+                        currX--;
                         if (currX < 0) {
                             currY--;
                             currX = 8;
                         }
-                        currX--;
+                        currBox = boxes[currX][currY];
                     }
-                    currX--;
                     if (currX < 0) {
                         currX = 8;
                         currY--;
                     }
+                    currBox = boxes[currX][currY];
+                    currBox.valueOfText++;
                 }
             }
-            Frame.update(boxes);
+            
+            count++;
+            //System.out.println(count);
+            //Main.frame.printThing(boxes);
         }
         System.out.println("Solved");
+        System.out.println(count);
+        System.out.println("This took " + (double)(System.currentTimeMillis() - time) / 1000 + " seconds to complete."); 
         Print(boxes, 9, 9);
     }
     public static boolean checkRow(Box box) {
