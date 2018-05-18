@@ -61,10 +61,8 @@ public class Solver{
             //System.out.println(count);
             //Main.frame.printThing(boxes);
         }
-        System.out.println("Solved");
-        System.out.println(count);
         System.out.println("This took " + (double)(System.currentTimeMillis() - time) / 1000 + " seconds to complete."); 
-        Print(boxes, 9, 9);
+        Frame.lastStep(boxes);
     }
     public static boolean checkRow(Box box) {
         int curr = box.valueOfText;
