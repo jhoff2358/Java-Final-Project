@@ -19,9 +19,7 @@ public class Box{
             changeable = false;
         }
     }
-    
     public void update(int newInt) {
         valueOfText = newInt;
     }
-
 }

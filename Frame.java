@@ -6,9 +6,32 @@ import java.awt.event.*;
 public class Frame{
     private static JFrame JF;
     private static JPanel pan1, pan2;
+    public static Box[][] boxes;
     static JTextField jt[][];
     private JButton solve;
     public static int rows, cols;
+    public static int[][] board = {
+        {5,3,0,0,7,0,0,0,0},
+        {6,0,0,1,9,5,0,0,0},
+        {0,9,8,0,0,0,0,6,0},
+        {8,0,0,0,6,0,0,0,3},
+        {4,0,0,8,0,3,0,0,1},
+        {7,0,0,0,2,0,0,0,6},
+        {0,6,0,0,0,0,2,8,0},
+        {0,0,0,4,1,9,0,0,5},
+        {0,0,0,0,8,0,0,7,9}
+    };
+    public static int[][] antiop = {
+        {0,0,0,0,0,0,0,0,0},
+        {0,0,0,0,0,3,0,8,5},
+        {0,0,1,0,2,0,0,0,0},
+        {0,0,0,5,0,7,0,0,0},
+        {0,0,4,0,0,0,1,0,0},
+        {0,9,0,0,0,0,0,0,0},
+        {5,0,0,0,0,0,0,7,3},
+        {0,0,2,0,1,0,0,0,0},
+        {0,0,0,0,4,0,0,0,9}
+    };
     public Frame(){
         JF = new JFrame("Sudoku Solver");
         JF.setVisible(true);
@@ -27,8 +50,8 @@ public class Frame{
         JF.add(pan2, BorderLayout.SOUTH);
         for(int i = 0; i < rows; i++){ 
             for(int j = 0; j < cols; j++){
-                //jt[i][j] = new JTextField(Integer.toString(Main.board[i][j]));
-                //jt[i][j] = new JTextField(Integer.toString(Main.antiop[i][j]));
+                //jt[i][j] = new JTextField(Integer.toString(board[i][j]));
+                //jt[i][j] = new JTextField(Integer.toString(antiop[i][j]));
                 jt[i][j] = new JTextField("");
                 jt[i][j].setFont(new Font("Arial", Font.PLAIN, 36));
                 jt[i][j].setColumns(2);
@@ -38,9 +61,13 @@ public class Frame{
         JF.setSize(JF.getPreferredSize());
         solve.addActionListener(new ActionListener(){
            public void actionPerformed(ActionEvent e){
-               //printThing(boxes);
-               Main.build(jt, rows, cols);
-               Solver.solve(Main.boxes, rows, cols);
+               boxes = new Box[rows][cols];
+               for(int i = 0; i < rows; i++){ 
+                   for(int j = 0; j < cols; j++){
+                       boxes[i][j] = new Box(jt[i][j], i, j);
+                   }
+                }
+               Solver.solve(boxes, rows, cols);
            }
         });
     }
@@ -49,7 +76,7 @@ public class Frame{
         jf2.setLayout(new BorderLayout());
         JPanel jp = new JPanel();
         JPanel buttons = new JPanel();
-        JButton b = new JButton("Solved Another?");
+        JButton b = new JButton("Solve Another?");
         JButton yes = new JButton("Yes!   (:");
         JButton no = new JButton("No!   );");
         jp.setLayout(new GridLayout(rows, cols, 5, 5));
@@ -81,11 +108,10 @@ public class Frame{
            public void actionPerformed(ActionEvent e){
                jf2.dispose();
                JF.dispose();
-               // for(int i = 0; i < rows; i++){
-                    // for(int j = 0; j < cols; j++){
-                        
-                    // }
-               // }
+               for(int i = 0; i < rows; i++){
+                   for(int j = 0; j < cols; j++){
+                   }
+                }
                new Frame();
            }
         });
@@ -96,22 +122,7 @@ public class Frame{
            }
         });
     }
-    public void printThing(Box[][] boxes){
-        for(int i = 0; i < rows; i++){
-            for(int j = 0; j < cols; j++){
-                System.out.print(boxes[i][j].valueOfText + " ");
-            }
-            System.out.println();
-        }
-        System.out.println();
-    }
-    public static void update(Box[][] boxes) {
-        for(int i = 0; i < 9; i++){
-            for(int j = 0; j < 9; j++){
-                jt[i][j].setText(boxes[i][j].valueOfText + "");
-                jt[i][j].updateUI();
-            }
-        }
-        pan1.updateUI();
+    public static void main(String args[]){
+        new Frame();
     }
 }
