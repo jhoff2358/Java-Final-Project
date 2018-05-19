@@ -1,9 +1,7 @@
 import javax.swing.*;
 
 public class Box{
-    public int width = 9, height = 9;
     public int cellNum, row, col, valueOfText;
-    public int[] rowPos, colPos, cellPos, intersect;
     public JTextField field;
     public boolean changeable;
     public Box(JTextField t, int row, int col){

@@ -108,10 +108,6 @@ public class Frame{
            public void actionPerformed(ActionEvent e){
                jf2.dispose();
                JF.dispose();
-               for(int i = 0; i < rows; i++){
-                   for(int j = 0; j < cols; j++){
-                   }
-                }
                new Frame();
            }
         });
